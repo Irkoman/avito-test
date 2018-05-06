@@ -1,0 +1,111 @@
+.details
+  flex-wrap: wrap
+  display: flex
+  padding: 10px
+  background: #fff
+  border-radius: 5px
+  border-top: solid 10px #000
+
+.details__title
+  flex-basis: 100%
+  width: 100%
+  margin: 0
+  margin-top: 10px
+  padding: 0 20px
+  font-size: 32px
+  letter-spacing: -1px
+  box-sizing: border-box
+
+.details__main
+  width: 70%
+  padding: 0 10px 10px 20px
+  box-sizing: border-box
+
+.details__date
+  margin-bottom: 0
+  font-size: 14px
+  color: #999
+
+.details__price
+  margin-top: 0
+  font-size: 24px
+  font-weight: bold
+  letter-spacing: -1px
+
+.details__gallery
+  display: flex
+
+  img
+    background: #ccc
+
+.details__gallery-preview
+  width: 205px
+  height: 205px
+  margin-right: 5px
+
+.details__gallery-thumbnails
+  display: flex
+  flex-wrap: wrap
+
+.details__gallery-item
+  width: 100px
+  height: 100px
+  margin-right: 5px
+  margin-bottom: 5px
+
+.details__aside
+  width: 30%
+  padding: 10px 20px
+  box-sizing: border-box
+
+.details__address
+  margin-bottom: 40px
+
+.details__address-map
+  width: 230px
+  height: 150px
+  background: #ccc
+
+.details__seller
+  display: flex
+  flex-direction: row-reverse
+
+.details__seller-name
+  margin-top: 0
+  margin-bottom: 0
+  margin-left: 15px
+  font-size: 18px
+
+.details__seller-rating
+  position: relative
+  margin-top: 0
+  font-size: 0
+
+  &::after
+    position: absolute
+    top: 0
+    left: 0
+    height: 50px
+    font-size: 40px
+    line-height: 50px
+    opacity: 0.5
+    z-index: 0
+
+  &_good::after
+    content: '👍'
+
+  &_average::after
+    content: '🤞'
+
+  &_bad::after
+    content: '👎'
+
+.details__seller-rating-value
+  position: relative
+  display: block
+  width: 40px
+  font-size: 20px
+  font-weight: bold
+  line-height: 50px
+  text-align: center
+  z-index: 1

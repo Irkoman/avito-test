@@ -1,0 +1,42 @@
+.filters
+  font-size: 14px
+
+.filters__group
+  margin: 0
+  padding: 15px 0 10px
+  border: 0
+  border-bottom: solid 1px #ccc
+
+  input[type=checkbox]
+  input[type=radio]
+    position: absolute  
+    left: -900em
+
+  select
+    margin-top: 3px
+    zoom: 1.4
+
+  &_favorite
+    .filters__item
+      transform: translateX(-10px)
+
+.filters__item
+  display: inline-block
+  margin: 0 0 5px 5px
+  padding: 5px
+  border-radius: 3px
+  text-decoration: underline
+  cursor: pointer
+
+  input[type=checkbox]:checked + &
+  input[type=radio]:checked + &
+    color: #fff
+    background: #333
+    text-decoration: none
+    text-decoration-color: #999
+
+.filters__submit
+  display: block
+  width: 6em
+  margin: 10px auto
+  zoom: 2
