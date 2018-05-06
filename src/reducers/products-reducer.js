@@ -58,16 +58,6 @@ async function decodeAddress(item) {
   }
 }
 
-async function loadSeller(id) {
-  try {
-    const { data: { data } } = await axios.get(`https://avito.dump.academy/sellers/${id}`);
-
-    return data;
-  } catch (error) {
-    throw error;
-  }
-}
-
 export function loadProducts() {
   return async (dispatch) => {
     dispatch({ type: LOAD_PRODUCTS });
@@ -92,7 +82,7 @@ export function filterProducts({ category = 'all', sort = 'popular', price = 500
     try {
       const { originalItems } = getState().products;
 
-      const filteredItems = originalItems.filter(item => (
+      const filteredItems = pullLikesFromStorage(originalItems).filter(item => (
         (item.price <= price || !item.price) &&
         (category === 'all' || item.category === category || !item.category) &&
         (item.isLiked === favorite || item.isLiked === true)
@@ -114,9 +104,13 @@ export function loadProduct(id) {
     try {
       const { data: { data } } = await axios.get(`https://avito.dump.academy/products/${id}`);
       const item = await decodeAddress(data);
-      const seller = await loadSeller(item.relationships.seller);
+      const sellerId = item.relationships.seller;
+      const seller = await axios.get(`https://avito.dump.academy/sellers/${sellerId}`);
 
-      dispatch({ type: LOAD_PRODUCT_SUCCESS, data: { ...item, seller } });
+      dispatch({
+        type: LOAD_PRODUCT_SUCCESS,
+        data: { ...item, seller: seller.data.data }
+      });
     } catch (error) {
       dispatch({ type: LOAD_PRODUCT_ERROR });
     }
